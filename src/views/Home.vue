@@ -1,18 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>Popular Films</h1>
+    <div class="d-flex flex-wrap">
+      <MovieCard v-for="(item,index) in 10" :key="index" />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import MovieCard from "../components/MovieCard";
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    MovieCard
   }
 };
 </script>
+<style scoped>
+</style>
