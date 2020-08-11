@@ -3,27 +3,36 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const axios = require('axios');
+const axios = require("axios");
 
 export default new Vuex.Store({
   state: {
-    movies: []
+    movies: [],
   },
   mutations: {
-    setMovie(state,payload){
+    setMovie(state, payload) {
       state.movies = payload;
-    }
+    },
   },
   actions: {
-    async setMovie({commit}, payload) {
-      try {
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/${payload}?api_key=6493a6123f5162ff2ff9776e58dd41de`);
-        console.log(response.data.results);
-        commit('setMovie',response.data.results)
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    setMovie({ commit }, payload) {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${payload}?api_key=6493a6123f5162ff2ff9776e58dd41de`
+        )
+        .then((response) => {
+          commit("setMovie", response.data.results);
+        });
+    },
+    searchMovie({ commit }, payload) {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/search/movie/?api_key=6493a6123f5162ff2ff9776e58dd41de&query=${payload}`
+        )
+        .then((response) => {
+          commit("setMovie", response.data.results);
+        });
+    },
   },
-  modules: {}
+  modules: {},
 });

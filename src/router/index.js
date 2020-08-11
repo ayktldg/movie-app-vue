@@ -8,44 +8,44 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
   },
   {
     path: "/top-rated",
     name: "TopRated",
     component: () =>
-      import(/* webpackChunkName: "top-rated" */ "../views/TopRated.vue")
+      import(/* webpackChunkName: "top-rated" */ "../views/TopRated.vue"),
   },
   {
     path: "/is-showing",
     name: "IsShowing",
     component: () =>
-      import(/* webpackChunkName: "is-showing" */ "../views/IsShowing.vue")
+      import(/* webpackChunkName: "is-showing" */ "../views/IsShowing.vue"),
   },
   {
     path: "/upcoming",
     name: "Upcoming",
     component: () =>
-      import(/* webpackChunkName: "upcoming" */ "../views/Upcoming.vue")
+      import(/* webpackChunkName: "upcoming" */ "../views/Upcoming.vue"),
   },
   {
-    path: "/search",
+    path: "/search/:name",
     name: "Search",
     component: () =>
-      import(/* webpackChunkName: "search" */ "../views/SearchedMovies.vue")
+      import(/* webpackChunkName: "search" */ "../views/SearchedMovies.vue"),
   },
   {
     path: "/movie-detail",
     name: "MovieDetail",
     component: () =>
-      import(/* webpackChunkName: "movie-detail" */ "../views/MovieDetail.vue")
-  }
+      import(/* webpackChunkName: "movie-detail" */ "../views/MovieDetail.vue"),
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

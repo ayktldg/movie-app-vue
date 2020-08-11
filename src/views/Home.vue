@@ -2,14 +2,7 @@
   <div class="home">
     <h1>Popular Films</h1>
     <div class="d-flex flex-wrap">
-      <MovieCard
-        v-for="(movie,index) in movies"
-        :key="index"
-        :poster_path="movie.poster_path"
-        :title="movie.title"
-        :release_date="movie.release_date"
-        :vote_average="movie.vote_average"
-      />
+      <MovieCard v-for="(movie,index) in movies" :key="index" :movie="movie" />
     </div>
   </div>
 </template>
@@ -23,7 +16,7 @@ export default {
     MovieCard
   },
   computed: {
-    ...mapState(["movies"])
+    ...mapState({ movies: "movies" })
   },
   created() {
     this.$store.dispatch("setMovie", "popular");
