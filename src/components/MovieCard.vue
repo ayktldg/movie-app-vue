@@ -9,13 +9,14 @@
       <h5 class="card-title">{{movie.title}}</h5>
       <p class="card-text">{{movie.release_date}}</p>
       <p>Imdb Rank: {{movie.vote_average}}</p>
-      <router-link to="/movie-detail" class="btn btn-primary">Detail</router-link>
+      <a @click="goToDetail" class="btn btn-primary">Detail</a>
     </div>
   </div>
 </template>
 
 <script>
 import noImage from "../assets/noImage.jpg";
+import { mapState } from "vuex";
 export default {
   props: {
     movie: {
@@ -25,9 +26,17 @@ export default {
   },
   data() {
     return {
-      baseImageUrl: "https://image.tmdb.org/t/p/w500/",
       noImage
     };
+  },
+  computed: {
+    ...mapState({ baseImageUrl: "baseImageUrl" })
+  },
+  methods: {
+    goToDetail() {
+      this.$store.dispatch("setMovieDetail", this.movie.id);
+      this.$router.push({ name: "MovieDetail", params: { id: this.movie.id } });
+    }
   }
 };
 </script>

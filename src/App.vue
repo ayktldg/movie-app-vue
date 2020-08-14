@@ -13,6 +13,9 @@ export default {
   components: {
     TheNavbar,
     TheSearchBar
+  },
+   created() {
+    this.$store.dispatch("setMovie");
   }
 };
 </script>

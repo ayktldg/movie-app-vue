@@ -35,7 +35,7 @@ const routes = [
       import(/* webpackChunkName: "search" */ "../views/SearchedMovies.vue"),
   },
   {
-    path: "/movie-detail",
+    path: "/movie-detail/:id",
     name: "MovieDetail",
     component: () =>
       import(/* webpackChunkName: "movie-detail" */ "../views/MovieDetail.vue"),

@@ -17,9 +17,6 @@ export default {
   },
   computed: {
     ...mapState({ movies: "movies" })
-  },
-  created() {
-    this.$store.dispatch("setMovie", "popular");
   }
 };
 </script>
