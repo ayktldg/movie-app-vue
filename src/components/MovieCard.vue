@@ -1,10 +1,6 @@
 <template>
   <div class="card m-2" style="width: 16rem;">
-    <img
-      :src="movie.poster_path ? `${baseImageUrl}${movie.poster_path}`: noImage"
-      class="card-img-top"
-      :alt="`${movie.title}`"
-    />
+    <MovieImage :movie="movie"/>
     <div class="card-body">
       <h5 class="card-title">{{movie.title}}</h5>
       <p class="card-text">{{movie.release_date}}</p>
@@ -15,29 +11,24 @@
 </template>
 
 <script>
-import noImage from "../assets/noImage.jpg";
-import { mapState } from "vuex";
+import MovieImage from "./MovieImage";
 export default {
+  name: 'MovieCard',
+  components: {
+    MovieImage
+  },
   props: {
     movie: {
       type: Object,
       required: true
     }
   },
-  data() {
-    return {
-      noImage
-    };
-  },
-  computed: {
-    ...mapState({ baseImageUrl: "baseImageUrl" })
-  },
   methods: {
     goToDetail() {
       this.$store.dispatch("setMovieDetail", this.movie.id);
       this.$router.push({ name: "MovieDetail", params: { id: this.movie.id } });
     }
-  }
+  },
 };
 </script>
 

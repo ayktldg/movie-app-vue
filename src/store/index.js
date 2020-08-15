@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import apiUrl from '../utils/axios'
 
 Vue.use(Vuex);
 
@@ -8,8 +9,7 @@ const axios = require("axios");
 export default new Vuex.Store({
   state: {
     movies: [],
-    movieDetail: null,
-    baseImageUrl: "https://image.tmdb.org/t/p/w500/",
+    movieDetail: {},
   },
   mutations: {
     setMovie(state, payload) {
@@ -20,10 +20,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    setMovie({ commit }) {
+    setMovie({ commit }, payload) {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=6493a6123f5162ff2ff9776e58dd41de`
+          `${apiUrl.baseUrl}movie/${payload}`, {params: { api_key: apiUrl.apiKey }}
         )
         .then((response) => {
           commit("setMovie", response.data.results);
@@ -32,7 +32,7 @@ export default new Vuex.Store({
     searchMovie({ commit }, payload) {
       axios
         .get(
-          `https://api.themoviedb.org/3/search/movie/?api_key=6493a6123f5162ff2ff9776e58dd41de&query=${payload}`
+          `${apiUrl.baseUrl}search/movie/`, {params: { api_key: apiUrl.apiKey, query: payload}}
         )
         .then((response) => {
           commit("setMovie", response.data.results);
@@ -41,7 +41,7 @@ export default new Vuex.Store({
     setMovieDetail( { commit }, payload) {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${payload}?api_key=6493a6123f5162ff2ff9776e58dd41de&append_to_response=videos`
+          `${apiUrl.baseUrl}movie/${payload}`, {params: { api_key: apiUrl.apiKey, append_to_response: 'videos' }}
         )
         .then((response) => {
           commit("setMovieDetail", response.data);

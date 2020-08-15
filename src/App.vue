@@ -15,7 +15,7 @@ export default {
     TheSearchBar
   },
    created() {
-    this.$store.dispatch("setMovie");
+    this.$store.dispatch("setMovie", 'popular');
   }
 };
 </script>
