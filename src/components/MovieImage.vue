@@ -1,7 +1,7 @@
 <template>
   <div>
     <img
-      :src="movie.poster_path ? `${mediaUrls.imageBaseUrl}${movie.poster_path}`: noImage"
+      :src="movie.poster_path ? `${API.IMAGE_URL}${movie.poster_path}`: noImage"
       class="card-img-top"
       :alt="`${movie.title}`"
     />
@@ -10,7 +10,7 @@
 
 <script>
 import noImage from "../assets/noImage.jpg";
-import mediaUrls from "../utils/mediaUrls";
+import API from "../api/index";
 export default {
   props: {
     movie: {
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       noImage,
-      mediaUrls
+      API
     };
   }
 };

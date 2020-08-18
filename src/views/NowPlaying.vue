@@ -1,8 +1,8 @@
 <template>
-  <div class="top-rated">
-    <h1>Top rated</h1>
+  <div class="is-showing">
+    <p>Now Playing</p>
     <div class="d-flex flex-wrap">
-      <MovieCard v-for="(movie,index) in movies" :key="index" :movie="movie" />
+      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@ import MovieCard from "../components/MovieCard";
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers('movies')
 export default {
-  name: "TopRated",
+  name: "NowPlaying",
   components: {
     MovieCard
   },
@@ -20,7 +20,7 @@ export default {
     ...mapGetters({ movies: "movies" })
   },
   created() {
-    this.$store.dispatch("movies/SET_MOVIE", "top_rated");
+    this.$store.dispatch("movies/SET_MOVIE", "now_playing");
   }
 };
 </script>

@@ -14,9 +14,9 @@ export default {
     TheNavbar,
     TheSearchBar
   },
-   created() {
-    this.$store.dispatch("setMovie", 'popular');
-  }
+/*    created() {
+    this.$store.dispatch("movies/SET_MOVIE", 'popular');
+  } */
 };
 </script>
 

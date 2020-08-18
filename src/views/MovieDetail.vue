@@ -4,7 +4,7 @@
       <img
         class="bg w-100"
         style="max-height: 600px"
-        :src="`${mediaUrls.imageBaseUrl}${movieDetail.backdrop_path}`"
+        :src="`${API.IMAGE_URL}${movieDetail.backdrop_path}`"
         :alt="`${movieDetail.title}`"
       />
       <div class="detail-card bg-dark p-3 text-white d-flex m-3">
@@ -28,12 +28,15 @@
         </div>
       </div>
     </div>
+    <div class="container cast d-flex flex-wrap">
+      <CastProfileCard v-for="actor in cast" :key="actor.id" :actor="actor" />
+    </div>
     <div class="container bg-primary d-flex overflow-auto my-3" v-if="showTrailer">
       <iframe
         class="mx-2"
         width="800"
         height="640"
-        :src="`${mediaUrls.trailerBaseUrl}${movieDetail.videos.results[0].key}`"
+        :src="`${API.TRAILER_URL}${movieDetail.videos.results[0].key}`"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
@@ -43,26 +46,29 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import MovieImage from "../components/MovieImage";
-import mediaUrls from "../utils/mediaUrls";
+import CastProfileCard from "../components/CastProfileCard";
+import API from "../api/index";
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("movies");
 export default {
   name: "MovieDetail",
   components: {
-    MovieImage
+    MovieImage,
+    CastProfileCard
   },
   data() {
     return {
-      mediaUrls,
+      API,
       showTrailer: false
     };
   },
   computed: {
-    ...mapState({ movieDetail: "movieDetail" })
+    ...mapGetters({ movieDetail: "movieDetail", cast: "cast" })
   },
   created() {
-    this.$store.dispatch("setMovieDetail", this.$route.params.id);
-    console.log(this.movieDetail.videos.results[0].key);
+    this.$store.dispatch("movies/SET_MOVIE_DETAIL", this.$route.params.id);
+    this.$store.dispatch("movies/SET_MOVIE_CAST", this.$route.params.id);
   }
 };
 </script>

@@ -9,17 +9,18 @@
 
 <script>
 import MovieCard from "../components/MovieCard";
-import { mapState } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers('movies')
 export default {
   name: "Upcoming",
   components: {
     MovieCard
   },
   computed: {
-    ...mapState({ movies: "movies" })
+    ...mapGetters({ movies: "movies" })
   },
   created() {
-    this.$store.dispatch("setMovie", "upcoming");
+    this.$store.dispatch("movies/SET_MOVIE", "upcoming");
   }
 };
 </script>

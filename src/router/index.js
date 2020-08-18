@@ -17,10 +17,10 @@ const routes = [
       import(/* webpackChunkName: "top-rated" */ "../views/TopRated.vue"),
   },
   {
-    path: "/is-showing",
-    name: "IsShowing",
+    path: "/now-playing",
+    name: "NowPlaying",
     component: () =>
-      import(/* webpackChunkName: "is-showing" */ "../views/IsShowing.vue"),
+      import(/* webpackChunkName: "now-playing" */ "../views/NowPlaying.vue"),
   },
   {
     path: "/upcoming",
@@ -40,6 +40,19 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "movie-detail" */ "../views/MovieDetail.vue"),
   },
+  {
+    path: "/register",
+    name: "Register",
+    component: () =>
+      import(/* webpackChunkName: "register" */ "../views/user/Register.vue"),
+  },
+
+  {
+    path: "/login",
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/user/Login.vue"),
+  },
 ];
 
 const router = new VueRouter({
@@ -47,5 +60,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+
 
 export default router;

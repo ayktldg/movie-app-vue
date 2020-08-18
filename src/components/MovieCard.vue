@@ -5,7 +5,7 @@
       <h5 class="card-title">{{movie.title}}</h5>
       <p class="card-text">{{movie.release_date}}</p>
       <p>Imdb Rank: {{movie.vote_average}}</p>
-      <a @click="goToDetail" class="btn btn-primary">Detail</a>
+      <router-link :to="{name: 'MovieDetail', params: { id: movie.id}}" class="btn btn-primary">Detail</router-link>
     </div>
   </div>
 </template>
@@ -22,13 +22,7 @@ export default {
       type: Object,
       required: true
     }
-  },
-  methods: {
-    goToDetail() {
-      this.$store.dispatch("setMovieDetail", this.movie.id);
-      this.$router.push({ name: "MovieDetail", params: { id: this.movie.id } });
-    }
-  },
+  }
 };
 </script>
 

@@ -2,21 +2,26 @@
   <div class="home">
     <h1>Popular Films</h1>
     <div class="d-flex flex-wrap">
-      <MovieCard v-for="(movie,index) in movies" :key="index" :movie="movie" />
+      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
   </div>
 </template>
 
 <script>
 import MovieCard from "../components/MovieCard";
-import { mapState } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers('movies')
+
 export default {
   name: "Home",
   components: {
     MovieCard
   },
   computed: {
-    ...mapState({ movies: "movies" })
+    ...mapGetters({ movies: "movies"} )
+  },
+  created() {
+    this.$store.dispatch("movies/SET_MOVIE", 'popular');
   }
 };
 </script>

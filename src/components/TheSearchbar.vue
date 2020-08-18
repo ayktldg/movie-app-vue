@@ -14,7 +14,7 @@ export default {
   },
   watch: {
     searchedMovie: debounce(function(newValue) {
-      this.$store.dispatch("searchMovie", newValue);
+      this.$store.dispatch("movies/SEARCH_MOVIE", newValue);
       this.$router.push({ name: "Search", params: { name: newValue } });
     }, 500)
   }
