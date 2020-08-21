@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <input type="text" class="form-control w-50" placeholder="Search movie" v-model="searchedMovie" />
+  <div class="searchbar">
+    <input type="text" class="search form-control p-4" placeholder="Search movie" v-model="searchedMovie" />
   </div>
 </template>
 
@@ -22,4 +22,7 @@ export default {
 </script>
 
 <style scoped>
+.search{
+  border-radius: 32px;
+}
 </style>

@@ -1,50 +1,44 @@
 <template>
-  <div class="container mt-3">
-    <template v-if="message">
-      <h5>{{message}}</h5>
-    </template>
+  <div class="container mt-4 mb-5 col-6 p-3">
+    <h2 class="mb-5 text-center">Please sign in.</h2>
+    <div v-if="message" class="mb-3 bg-danger p-2 text-center">
+      <p class="text-white mb-0">{{message}}</p>
+    </div>
     <form @submit.prevent="onLogin">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <div class="mb-3">
-        <label for="inputUserName" class="sr-only">Username</label>
+      <div class="form-group">
+        <label for="inputUsername">Username</label>
         <input
           type="text"
-          v-model="user.userName"
-          id="inputUserName"
           class="form-control"
+          id="inputUsername"
           placeholder="Username"
-          required
-          autofocus
+          v-model="user.userName"
         />
       </div>
-      <div class="mt-3">
-        <label for="inputPassword" class="sr-only">Password</label>
+      <div class="form-group">
+        <label for="inputPassword">Password</label>
         <input
           type="password"
-          v-model="user.password"
-          id="inputPassword"
           class="form-control"
+          id="inputPassword"
           placeholder="Password"
-          required
+          v-model="user.password"
         />
       </div>
-      <button class="mt-3 btn btn-lg btn-primary btn-block" type="submit">
-        <span class="pr-2">Sign in</span>
-        <!-- <div class="spinner-border text-light" role="status" v-if="loading">
-          <span class="sr-only">Loading...</span>
-        </div>-->
-      </button>
-      <router-link to="/register">
-        Not an User?
-        <strong>Create account</strong>
-      </router-link>
+      <button type="submit" class="btn font-weight-bold text-white btn-block">Login</button>
+      <div class="mt-4 text-center">
+        <router-link to="/register" class="text-dark">
+          Not an User?
+          <strong>Create account</strong>
+        </router-link>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapGetters } = createNamespacedHelpers('users')
+const { mapGetters } = createNamespacedHelpers("users");
 
 export default {
   data() {
@@ -60,20 +54,23 @@ export default {
     ...mapGetters({ currentUser: "currentUser" })
   },
   methods: {
-    //...mapActions({ setCurrentUser: "SET_CURRENT_USER" }),
     onLogin() {
-      this.$store.dispatch("users/SET_CURRENT_USER",  {user: this.user, status: true });
-      console.log(this.currentUser)
-        if (this.currentUser !== null) {
-          this.$router.push("/");
-        } else {
-          this.message = "User not found. check login information";
-        }
-        
+      this.$store.dispatch("users/SET_CURRENT_USER", {
+        user: this.user,
+        status: true
+      });
+      if (this.currentUser !== null) {
+        this.$router.push("/");
+      } else {
+        this.message = "User not found. check the login information";
+      }
     }
   }
 };
 </script>
 
 <style scoped>
+.btn {
+  background-color: rgb(11, 4, 44);
+}
 </style>

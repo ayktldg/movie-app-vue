@@ -1,47 +1,74 @@
 <template>
-  <div>
-    <div class="main">
-      <img
-        class="bg w-100"
-        style="max-height: 600px"
-        :src="`${API.IMAGE_URL}${movieDetail.backdrop_path}`"
-        :alt="`${movieDetail.title}`"
-      />
-      <div class="detail-card bg-dark p-3 text-white d-flex m-3">
-        <MovieImage :movie="movieDetail" />
-        <div class="card-description ml-4 mt-5">
-          <h1 class="card-title">{{movieDetail.title}}</h1>
-          <h2>{{movieDetail.tagline}}</h2>
-          <h6>Overview</h6>
-          <p class="card-text">{{movieDetail.overview}}</p>
-          <p class="card-text">Release Date: {{movieDetail.release_date}}</p>
-          <p class="card-text">Runtime: {{movieDetail.runtime}}</p>
-          <p class="card-text">Budged: {{movieDetail.budget}}$</p>
-          <h6>Genres</h6>
-          <span
-            class="card-text"
-            v-for=" (genre,index) in movieDetail.genres"
-            :key="index"
-          >{{genre.name}}</span>
-          <p>Rank: {{movieDetail.vote_average}}</p>
-          <button @click="showTrailer = !showTrailer">Play trailer</button>
+  <div class="detail">
+    <div
+      class="main text-white"
+      :style="`background-image: url(${API.IMAGE_URL}${movieDetail.backdrop_path});
+     background-repeat: no-repeat; 
+     background-size: cover; 
+     background-position: center center;`"
+    >
+      <div class="main-content p-5">
+        <div class="row m-3">
+          <div class="col-3">
+            <MovieImage :movie="movieDetail" />
+          </div>
+          <div class="col-9">
+            <h2 class="font-weight-bold">{{movieDetail.title}}</h2>
+            <ul class="d-flex mt-3">
+              <li class="mr-5">
+                <small>{{movieDetail.release_date}}</small>
+              </li>
+              <li class="mr-5">
+                <small class="card-text" v-for=" (genre,index) in movieDetail.genres" :key="index">
+                  {{genre.name}}
+                  <span></span>
+                </small>
+              </li>
+              <li>
+                <small>{{movieDetail.runtime}} min</small>
+              </li>
+            </ul>
+            <div class="selection d-flex align-items-center mt-5">
+              <div class="rank-container d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <span class="rank">{{movieDetail.vote_average}}</span>
+                </div>
+                <div class="ml-4">
+                  <small class="font-weight-bold">IMDB Rank</small>
+                </div>
+              </div>
+              <div class="buttons ml-5 d-flex align-items-center">
+                <a class="play ml-4 text-white" @click="showTrailer">
+                  <svg
+                    width="2em"
+                    height="2em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-play-fill"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+                    />
+                  </svg>Play trailer
+                </a>
+                <BaseBookmarkButton :movie="movieDetail" class="ml-4" />
+              </div>
+            </div>
+            <h5 class="font-weight-light font-italic mt-4">{{movieDetail.tagline}}</h5>
+            <h5 class="font-weight-bold mt-4">Overview</h5>
+            <p class="card-text">{{movieDetail.overview}}</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="container cast d-flex flex-wrap">
-      <CastProfileCard v-for="actor in cast" :key="actor.id" :actor="actor" />
+    <div class="container cast mt-5">
+      <h2>Cast</h2>
+      <div class="d-flex flex-wrap mt-3">
+        <CastProfileCard v-for="actor in cast" :key="actor.id" :actor="actor" />
+      </div>
     </div>
-    <div class="container bg-primary d-flex overflow-auto my-3" v-if="showTrailer">
-      <iframe
-        class="mx-2"
-        width="800"
-        height="640"
-        :src="`${API.TRAILER_URL}${movieDetail.videos.results[0].key}`"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    </div>
+    <MovieTrailerFrame :movie="movieDetail" v-if="trailerIsShowing" />
   </div>
 </template>
 
@@ -49,22 +76,33 @@
 import MovieImage from "../components/MovieImage";
 import CastProfileCard from "../components/CastProfileCard";
 import API from "../api/index";
-import { createNamespacedHelpers } from "vuex";
-const { mapGetters } = createNamespacedHelpers("movies");
+import BaseBookmarkButton from "../components/BaseBookmarkButton";
+import MovieTrailerFrame from "../components/MovieTrailerFrame";
+import { mapGetters } from "vuex";
 export default {
   name: "MovieDetail",
   components: {
     MovieImage,
-    CastProfileCard
+    CastProfileCard,
+    BaseBookmarkButton,
+    MovieTrailerFrame
   },
   data() {
     return {
-      API,
-      showTrailer: false
+      API
     };
   },
+  methods: {
+    showTrailer() {
+      this.$store.dispatch("movies/CHANGE_TRAILER_STATUS", true);
+    }
+  },
   computed: {
-    ...mapGetters({ movieDetail: "movieDetail", cast: "cast" })
+    ...mapGetters({
+      movieDetail: "movies/movieDetail",
+      cast: "movies/cast",
+      trailerIsShowing: "movies/trailerIsShowing"
+    })
   },
   created() {
     this.$store.dispatch("movies/SET_MOVIE_DETAIL", this.$route.params.id);
@@ -74,17 +112,21 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  position: relative;
+.main-content {
+  background-color: rgb(0, 51, 85);
+  opacity: 0.9;
 }
-.detail-card {
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  max-width: 1300px;
-  opacity: 0.8;
+.rank-container {
+  background-color: rgb(13, 3, 61);
+  border: 2px solid rgb(241, 234, 131);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  padding-left: 10px;
 }
-.card-image {
-  opacity: 1;
+.play:hover {
+  opacity: 0.9;
+  cursor: pointer;
 }
 </style>

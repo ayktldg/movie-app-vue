@@ -1,19 +1,23 @@
 <template>
-  <div class="card m-2" style="width: 16rem;">
-    <MovieImage :movie="movie"/>
-    <div class="card-body">
-      <h5 class="card-title">{{movie.title}}</h5>
-      <p class="card-text">{{movie.release_date}}</p>
-      <p>Imdb Rank: {{movie.vote_average}}</p>
-      <router-link :to="{name: 'MovieDetail', params: { id: movie.id}}" class="btn btn-primary">Detail</router-link>
-    </div>
+  <div class="movie-card card mr-4 mb-4">
+    <router-link :to="{name: 'MovieDetail', params: { id: movie.id}}" class="card-link">
+      <MovieImage :movie="movie" />
+      <div class="card-body">
+        <div class="rank-container">
+          <span class="rank">{{movie.vote_average}}</span>
+        </div>
+        <h6 >{{movie.title}}</h6>
+        <small >{{movie.release_date}}</small>
+      </div>
+      <button v-if="$route.path ==='/watchlist'" @click="removeMovie">Remove</button>
+    </router-link>
   </div>
 </template>
 
 <script>
 import MovieImage from "./MovieImage";
 export default {
-  name: 'MovieCard',
+  name: "MovieCard",
   components: {
     MovieImage
   },
@@ -22,9 +26,48 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    removeMovie() {
+      this.$store.dispatch("users/REMOVE_FAVORITES", this.movie);
+    }
   }
 };
 </script>
 
 <style scoped>
+.movie-card {
+  width: 12.3rem;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.30);
+}
+.movie-card:hover{
+  opacity: 0.9;
+}
+.card-link{
+  color: black;
+}
+.card-body{
+  position: relative;
+}
+.rank-container {
+  background-color: rgb(13, 3, 61);
+  border: 1px solid gray;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  position: absolute;
+  top: -19px;
+  right: 12px;
+  padding: 3px;
+
+}
+.rank {
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+
+}
 </style>

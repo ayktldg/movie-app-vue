@@ -1,54 +1,44 @@
 <template>
-  <div class="container mt-3">
+  <div class="container mt-3 mb-5 col-6 p-3">
+    <h2 class="mb-5 text-center">Sign up for millions of movies.</h2>
     <form @submit.prevent="onRegister">
-      <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-      <div>
-        <label for="inputEmail" class="sr-only">Email address</label>
+      <div class="form-group">
+        <label for="inputEmail">Email address</label>
         <input
           type="email"
-          v-model="user.email"
-          id="inputEmail"
           class="form-control"
-          placeholder="Email address"
-          required
-          autofocus
+          id="inputEmail"
+          placeholder="Enter email"
+          v-model="user.email"
         />
       </div>
-      <div class="mb-3">
-        <label for="inputUserName" class="sr-only">Username</label>
+      <div class="form-group">
+        <label for="inputUsername">Username</label>
         <input
           type="text"
-          v-model="user.userName"
-          id="inputUserName"
           class="form-control"
+          id="inputUsername"
           placeholder="Username"
-          required
-          autofocus
+          v-model="user.userName"
         />
       </div>
-      <div class="mt-3">
-        <label for="inputPassword" class="sr-only">Password</label>
+      <div class="form-group">
+        <label for="inputPassword">Password</label>
         <input
           type="password"
-          v-model="user.password"
-          id="inputPassword"
           class="form-control"
+          id="inputPassword"
           placeholder="Password"
-          required
+          v-model="user.password"
         />
       </div>
-      <button class="mt-3 btn btn-lg btn-primary btn-block" type="submit">
-        <span class="pr-2">Register</span>
-        <!--  <div class="spinner-border text-light" role="status" v-if="loading">
-          <span class="sr-only">Loading...</span>
-        </div>-->
-      </button>
+      <button type="submit" class="btn font-weight-bold text-white btn-block">Register</button>
     </form>
   </div>
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 export default {
   name: "Register",
   data() {
@@ -61,14 +51,14 @@ export default {
       }
     };
   },
-  methods:{
-    onRegister(){
+  methods: {
+    onRegister() {
       this.generateId();
-      this.$store.dispatch('users/ADD_USER', this.user).then(() => {
-        this.$router.push('/login')
-      })
+      this.$store.dispatch("users/ADD_USER", this.user).then(() => {
+        this.$router.push("/login");
+      });
     },
-    generateId(){
+    generateId() {
       this.user.id = uuidv4();
     }
   }
@@ -76,4 +66,7 @@ export default {
 </script>
 
 <style scoped>
+.btn {
+  background-color: rgb(11, 4, 44);
+}
 </style>

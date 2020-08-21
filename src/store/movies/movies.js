@@ -7,17 +7,21 @@ const movies = {
     movies: [],
     movieDetail: {},
     cast: [],
+    trailerIsShowing: false
   },
   mutations: {
     SET_MOVIE(state, payload) {
-      state.movies = payload;
+      state.movies = payload.filter(obj => obj.poster_path !== null);
     },
     SET_MOVIE_DETAIL(state, payload) {
       state.movieDetail = payload;
     },
     SET_MOVIE_CAST(state, payload) {
-      state.cast = payload;
+      state.cast = payload.filter(obj => obj.profile_path !== null)
     },
+    CHANGE_TRAILER_STATUS(state,payload){
+      state.trailerIsShowing = payload;
+    }
   },
   actions: {
     SET_MOVIE({ commit }, payload) {
@@ -54,11 +58,15 @@ const movies = {
           commit("SET_MOVIE_CAST", response.data.cast);
         });
     },
+    CHANGE_TRAILER_STATUS({commit},payload){
+      commit('CHANGE_TRAILER_STATUS',payload);
+    }
   },
   getters: {
     movies: (state) => state.movies,
     movieDetail: (state) => state.movieDetail,
     cast: (state) => state.cast,
+    trailerIsShowing: state => state.trailerIsShowing
   },
 };
 

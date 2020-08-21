@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import store from "../store/";
 
 Vue.use(VueRouter);
 
@@ -45,13 +46,26 @@ const routes = [
     name: "Register",
     component: () =>
       import(/* webpackChunkName: "register" */ "../views/user/Register.vue"),
+    beforeEnter: (to, from, next) => {
+      const isLogin = store.getters["users/isLogin"];
+      if (isLogin) {
+        next("/");
+      } else {
+        next();
+      }
+    },
   },
-
   {
     path: "/login",
     name: "Login",
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/user/Login.vue"),
+  },
+  {
+    path: "/watchlist",
+    name: "Watchlist",
+    component: () =>
+      import(/* webpackChunkName: "watchlist" */ "../views/user/Watchlist.vue"),
   },
 ];
 
@@ -60,7 +74,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
-
 
 export default router;

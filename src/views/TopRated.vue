@@ -1,29 +1,27 @@
 <template>
   <div class="top-rated">
-    <h1>Top rated</h1>
-    <div class="d-flex flex-wrap">
-      <MovieCard v-for="(movie,index) in movies" :key="index" :movie="movie" />
+    <div class="container my-4">
+      <h2 class>Top Rated</h2>
+    </div>
+    <div class="container d-flex flex-wrap">
+      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
   </div>
 </template>
 
 <script>
 import MovieCard from "../components/MovieCard";
-import { createNamespacedHelpers } from "vuex";
-const { mapGetters } = createNamespacedHelpers('movies')
+import { mapGetters } from "vuex";
 export default {
   name: "TopRated",
   components: {
     MovieCard
   },
   computed: {
-    ...mapGetters({ movies: "movies" })
+    ...mapGetters({ movies: "movies/movies" })
   },
   created() {
     this.$store.dispatch("movies/SET_MOVIE", "top_rated");
   }
 };
 </script>
-
-<style scoped>
-</style>
