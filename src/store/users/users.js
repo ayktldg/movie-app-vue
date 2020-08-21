@@ -24,20 +24,22 @@ const users = {
     LOG_OUT(state, payload) {
       state.currentUser = null;
       state.isLogin = payload;
-      console.log(state.isLogin);
     },
     ADD_FAVORITES(state, payload) {
-      const index = state.users.findIndex(obj => obj.id === state.currentUser.id)
-      state.users[index].favorites.push(payload)
-      //state.currentUser.favorites.push(payload)
+      const index = state.users.findIndex(
+        (obj) => obj.id === state.currentUser.id
+      );
+      state.users[index].favorites.push(payload);
     },
     REMOVE_FAVORITES(state, payload) {
-      const index = state.users.findIndex(obj => obj.id === state.currentUser.id);
-      const movieIndex = state.users[index].favorites.findIndex(movie => movie.id === payload.id);
-      //const currentIndex = state.currentUser.favorites.findIndex(movie => movie.id === payload.id);
-      state.users[index].favorites.splice(movieIndex,1)
-     // state.currentUser.favorites.splice(currentIndex,1)
-    }
+      const index = state.users.findIndex(
+        (obj) => obj.id === state.currentUser.id
+      );
+      const movieIndex = state.users[index].favorites.findIndex(
+        (movie) => movie.id === payload.id
+      );
+      state.users[index].favorites.splice(movieIndex, 1);
+    },
   },
   actions: {
     ADD_USER({ commit }, payload) {
@@ -51,16 +53,21 @@ const users = {
     },
     REMOVE_FAVORITES({ commit }, payload) {
       commit("REMOVE_FAVORITES", payload);
-    }
+    },
+    LOG_OUT({ commit }, payload) {
+      commit("LOG_OUT", payload);
+    },
   },
   getters: {
     currentUser: (state) => state.currentUser,
     isLogin: (state) => state.isLogin,
     favorites: (state) => {
-      const index = state.users.findIndex(obj => obj.id === state.currentUser.id);
+      const index = state.users.findIndex(
+        (obj) => obj.id === state.currentUser.id
+      );
       return state.users[index].favorites;
-    }
-  }
+    },
+  },
 };
 
 export default users;

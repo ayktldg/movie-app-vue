@@ -64,7 +64,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .btn {
   background-color: rgb(11, 4, 44);

@@ -1,5 +1,5 @@
 <template>
-  <div class="footer w-100 d-flex justify-content-around align-items-center">
+  <div class="footer d-flex justify-content-around align-items-center">
     <div>
       <small>
         Powered by

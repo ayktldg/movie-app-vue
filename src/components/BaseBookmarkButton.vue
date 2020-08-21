@@ -1,17 +1,13 @@
 <template>
   <div>
-    <a class="fav" @click="addFavorites" :disabled="!isLogin">
-      <svg
-        width="1.5em"
-        height="1.5em"
-        viewBox="0 0 16 16"
-        class="bi bi-bookmark-fill"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path fill-rule="evenodd" d="M3 3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12l-5-3-5 3V3z" />
+    <a class="fav text-white" @click="addFavorites(movie)">
+      <svg class="icon icon-bookmark">
+        <use xlink:href="#icon-bookmark" />
       </svg>
-      {{bookmarkStatus ? 'remove': 'add'}}
+      <symbol id="icon-bookmark" viewBox="0 0 32 32">
+        <path d="M6 0v32l10-10 10 10v-32z"></path>
+      </symbol>
+      {{isInWatchlist().length > 0 ? 'Remove from watchlist' : 'Add to watchlist'}}
     </a>
   </div>
 </template>
@@ -20,43 +16,39 @@
 import { mapGetters } from "vuex";
 export default {
   name: "BaseBookmarkButton",
- /*  props: {
+  props: {
     movie: {
       type: Object,
       required: true
     }
-  }, */
-  data() {
-    return {
-      selectedMovie: {}
-    };
   },
   methods: {
-    addFavorites() {
-      if (this.bookmarkStatus) {
-        this.$store.dispatch("users/REMOVE_FAVORITES", this.selectedMovie);
+    addFavorites(selectedMovie) {
+      if (this.isInWatchlist().length > 0) {
+        this.$store.dispatch("users/REMOVE_FAVORITES", selectedMovie);
       } else {
-        this.$store.dispatch("users/ADD_FAVORITES", this.selectedMovie);
+        this.$store.dispatch("users/ADD_FAVORITES", selectedMovie);
       }
+    },
+    isInWatchlist() {
+      const item = this.favorites.filter(obj => obj.id === this.movie.id);
+      return item;
     }
   },
   computed: {
     ...mapGetters({
       favorites: "users/favorites",
-      isLogin: "users/isLogin",
-      movie: "movies/movieDetail"
     }),
     bookmarkStatus() {
-      const movie = this.favorites.filter(obj => obj.id === this.selectedMovie.id);
+      const movie = this.favorites.filter(
+        obj => obj.id === this.selectedMovie.id
+      );
       if (movie.length > 0) {
         return movie;
-      }else{
+      } else {
         return null;
-      }  
+      }
     }
-  },
-  created() {
-    this.selectedMovie = this.movie;
   }
 };
 </script>
@@ -65,5 +57,13 @@ export default {
 .fav:hover {
   opacity: 0.9;
   cursor: pointer;
+}
+.icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
 }
 </style>

@@ -4,7 +4,7 @@
       class="header"
       style="background-image: url('https://image.tmdb.org/t/p/original/gPcLCI8LmsOPCLPwwEoXj8lQ07R.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;"
     >
-      <div class="container py-5">
+      <div class="container py-5 pr-5">
         <h1 class="font-weight-bold text-white">Welcome.</h1>
         <h3
           class="font-weight-bold mb-4 text-white"

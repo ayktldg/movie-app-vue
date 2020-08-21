@@ -41,6 +41,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("users");
 
 export default {
+  name: "Login",
   data() {
     return {
       user: {

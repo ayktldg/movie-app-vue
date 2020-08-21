@@ -1,6 +1,8 @@
 <template>
   <div class="watchlist">
-    <h2 class>My Watchlist</h2>
+    <div class="container my-4">
+      <h2>My Watchlist</h2>
+    </div>
     <div v-show="favorites.length == 0" class="container my-5">
       <p class="message">Your</p>
       <p class="message">favorite movies</p>
@@ -26,7 +28,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .message {
   font-size: 5em;

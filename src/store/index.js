@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
- import VuexPersistence from 'vuex-persist'
+import VuexPersistence from "vuex-persist";
 const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
-})   
+  storage: window.localStorage,
+});
 
 import movies from "./movies/movies";
 import users from "./users/users";
@@ -16,7 +16,7 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     movies,
-    users
+    users,
   },
-  plugins: [vuexLocal.plugin]
+  plugins: [vuexLocal.plugin],
 });

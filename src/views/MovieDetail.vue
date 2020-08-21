@@ -39,20 +39,14 @@
               </div>
               <div class="buttons ml-5 d-flex align-items-center">
                 <a class="play ml-4 text-white" @click="showTrailer">
-                  <svg
-                    width="2em"
-                    height="2em"
-                    viewBox="0 0 16 16"
-                    class="bi bi-play-fill"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
-                    />
-                  </svg>Play trailer
+                  <svg class="icon icon-play3">
+                    <use xlink:href="#icon-play3" />
+                  </svg>
+                  <symbol id="icon-play3" viewBox="0 0 32 32">
+                    <path d="M6 4l20 12-20 12z"></path>
+                  </symbol>Play trailer
                 </a>
-                <BaseBookmarkButton :movie="movieDetail" class="ml-4" />
+                <BaseBookmarkButton :movie="movieDetail" class="ml-4" v-if="isLogin" />
               </div>
             </div>
             <h5 class="font-weight-light font-italic mt-4">{{movieDetail.tagline}}</h5>
@@ -101,7 +95,8 @@ export default {
     ...mapGetters({
       movieDetail: "movies/movieDetail",
       cast: "movies/cast",
-      trailerIsShowing: "movies/trailerIsShowing"
+      trailerIsShowing: "movies/trailerIsShowing",
+      isLogin: "users/isLogin"
     })
   },
   created() {
@@ -110,7 +105,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .main-content {
   background-color: rgb(0, 51, 85);
@@ -128,5 +122,13 @@ export default {
 .play:hover {
   opacity: 0.9;
   cursor: pointer;
+}
+.icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
 }
 </style>

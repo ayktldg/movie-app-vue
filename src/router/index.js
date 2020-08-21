@@ -67,6 +67,10 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "watchlist" */ "../views/user/Watchlist.vue"),
   },
+  {
+    path: "*",
+    redirect: "/",
+  },
 ];
 
 const router = new VueRouter({
