@@ -1,13 +1,13 @@
 <template>
-  <div class="footer d-flex justify-content-around align-items-center">
+  <nav class="footer navbar navbar-expand-lg justify-content-around">
     <div>
-      <small>
+      <small class="nav-link">
         Powered by
         <a href="https://www.themoviedb.org/">TMDB</a>
       </small>
     </div>
     <div class="owner">
-      <small>
+      <small class="nav-link">
         &copy; 2020 Made by
         <a
           class="text-danger"
@@ -18,7 +18,7 @@
     </div>
     <div class="icons d-flex">
       <div class="github">
-        <a href="https://github.com/ayktldg" target="_blank">
+        <a class="nav-link" href="https://github.com/ayktldg" target="_blank">
           <svg class="icon icon-github">
             <use xlink:href="#icon-github" />
           </svg>
@@ -30,7 +30,7 @@
         </a>
       </div>
       <div class="twitter ml-2">
-        <a href="https://twitter.com/ayktldg" target="_blank">
+        <a class="nav-link" href="https://twitter.com/ayktldg" target="_blank">
           <svg class="icon icon-twitter">
             <use xlink:href="#icon-twitter" />
           </svg>
@@ -44,7 +44,11 @@
         </a>
       </div>
       <div class="linkedin ml-2">
-        <a href="https://www.linkedin.com/in/aykut-uluda%C4%9F-477b17145/" target="_blank">
+        <a
+          class="nav-link"
+          href="https://www.linkedin.com/in/aykut-uluda%C4%9F-477b17145/"
+          target="_blank"
+        >
           <svg class="icon icon-linkedin2">
             <use xlink:href="#icon-linkedin2" />
           </svg>
@@ -60,7 +64,7 @@
         </a>
       </div>
       <div class="instagram ml-2">
-        <a href="https://www.instagram.com/ayktldg/" target="_blank">
+        <a class="nav-link" href="https://www.instagram.com/ayktldg/" target="_blank">
           <svg class="icon icon-instagram">
             <use xlink:href="#icon-instagram" />
           </svg>
@@ -80,7 +84,7 @@
         </a>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -89,7 +93,7 @@ export default {};
 
 <style scoped>
 .footer {
-  height: 72px;
+  /*height: 72px;  */
   background-color: rgb(11, 4, 44);
   color: white;
 }
