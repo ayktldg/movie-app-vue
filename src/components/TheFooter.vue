@@ -112,4 +112,9 @@ a:hover {
   stroke: currentColor;
   fill: currentColor;
 }
+@media (max-width: 575.98px) {
+  .footer {
+    flex-direction: column;
+  }
+}
 </style>

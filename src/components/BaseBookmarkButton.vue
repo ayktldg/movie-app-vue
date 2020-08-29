@@ -66,4 +66,9 @@ export default {
   stroke: currentColor;
   fill: currentColor;
 }
+@media (max-width: 575.98px) {
+  a{
+    font-size: 0.8rem;
+  }
+}
 </style>

@@ -8,7 +8,7 @@
       <p class="message">favorite movies</p>
       <p class="message">will come to this list.</p>
     </div>
-    <div class="movie-list container my-4 d-flex flex-wrap">
+    <div class="movie-list container my-5 d-flex flex-wrap">
       <MovieCard v-for="movie in favorites" :key="movie.id" :movie="movie" />
     </div>
   </div>

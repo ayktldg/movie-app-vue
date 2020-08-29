@@ -1,33 +1,34 @@
 <template>
-  <div class="detail">
+  <div class="movie-detail">
     <div
-      class="main text-white"
+      class="backdrop text-white"
       :style="`background-image: url(${API.IMAGE_URL}${movieDetail.backdrop_path});
      background-repeat: no-repeat; 
      background-size: cover; 
      background-position: center center;`"
     >
-      <div class="main-content p-5">
-        <div class="row m-3">
-          <div class="col-3">
+      <div class="main">
+        <div class="main-container d-flex p-4">
+          <div class="main-poster mr-5">
             <MovieImage :movie="movieDetail" />
           </div>
-          <div class="col-9">
+          <div class="main-content">
             <h2 class="font-weight-bold">{{movieDetail.title}}</h2>
-            <ul class="d-flex mt-3">
+            <div class="d-flex mt-3">
               <li class="mr-5">
-                <small>{{movieDetail.release_date}}</small>
+                <small class="mr-2">{{movieDetail.release_date}}</small>
               </li>
               <li class="mr-5">
-                <small class="card-text" v-for=" (genre,index) in movieDetail.genres" :key="index">
-                  {{genre.name}}
-                  <span></span>
-                </small>
+                <small
+                  class="card-text"
+                  v-for=" (genre,index) in movieDetail.genres"
+                  :key="index"
+                >{{genre.name}}</small>
               </li>
               <li>
                 <small>{{movieDetail.runtime}} min</small>
               </li>
-            </ul>
+            </div>
             <div class="selection d-flex align-items-center mt-5">
               <div class="rank-container d-flex align-items-center">
                 <div class="d-flex align-items-center">
@@ -106,9 +107,14 @@ export default {
 };
 </script>
 <style scoped>
-.main-content {
+.main {
   background-color: rgb(0, 51, 85);
   opacity: 0.9;
+  padding: 3rem;
+}
+.main-poster {
+  max-width: 13rem;
+  min-width: 7rem;
 }
 .rank-container {
   background-color: rgb(13, 3, 61);
@@ -133,8 +139,27 @@ export default {
 }
 
 @media (max-width: 575.98px) {
+  .main {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .main-container {
+    flex-direction: column;
+  }
+  .main-content {
+    min-width: 100%;
+    margin: 2em 0;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  h5,
+  p,
+  a {
+    font-size: 0.8rem;
+  }
   .cast-list {
     justify-content: center;
   }
- }
+}
 </style>
