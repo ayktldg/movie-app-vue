@@ -14,22 +14,22 @@
           </div>
           <div class="main-content">
             <h2 class="font-weight-bold">{{movieDetail.title}}</h2>
-            <div class="d-flex mt-3">
-              <li class="mr-5">
+            <div class="list d-flex mt-3">
+              <li class="mr-4">
                 <small class="mr-2">{{movieDetail.release_date}}</small>
               </li>
-              <li class="mr-5">
+              <li class="mr-4">
                 <small
-                  class="card-text"
+                  class="card-text mr-2"
                   v-for=" (genre,index) in movieDetail.genres"
                   :key="index"
-                >{{genre.name}}</small>
+                >{{genre.name }}</small>
               </li>
               <li>
                 <small>{{movieDetail.runtime}} min</small>
               </li>
             </div>
-            <div class="selection d-flex align-items-center mt-5">
+            <div class="selection d-flex align-items-center mt-4">
               <div class="rank-container d-flex align-items-center">
                 <div class="d-flex align-items-center">
                   <span class="rank">{{movieDetail.vote_average}}</span>
@@ -116,6 +116,7 @@ export default {
   max-width: 13rem;
   min-width: 7rem;
 }
+
 .rank-container {
   background-color: rgb(13, 3, 61);
   border: 2px solid rgb(241, 234, 131);
@@ -157,6 +158,9 @@ export default {
   p,
   a {
     font-size: 0.8rem;
+  }
+  .list {
+    flex-direction: column;
   }
   .cast-list {
     justify-content: center;
