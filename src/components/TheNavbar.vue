@@ -1,22 +1,52 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-sm p-3">
-      <div class>
-        <router-link to="/" class="logo nav-link font-weight-bold">TMDB</router-link>
-      </div>
-      <div class="links d-flex justify-content-center ml-auto">
-        <router-link to="/" class="nav-link">Home</router-link>
-        <router-link to="/top-rated" class="nav-link">Top Rated</router-link>
-        <router-link to="/now-playing" class="nav-link">Now Playing</router-link>
-        <router-link to="/upcoming" class="nav-link">Upcoming</router-link>
-        <router-link v-if="isLogin" to="/watchlist" class="nav-link">Watchlist</router-link>
-      </div>
-      <div class="login d-flex ml-auto">
-        <button
-          type="button"
-          @click="loginHandler"
-          class="nav-link btn btn-light btn-sm text-dark font-weight-bold mr-4"
-        >{{isLogin ? 'Logout': 'Login'}}</button>
+    <nav class="navigation navbar navbar-expand-lg py-4">
+      <router-link class="logo navbar-brand font-weight-bold text-white" to="/">TMDB</router-link>
+      <button
+        class="navbar-toggler btn-sm bg-light"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <svg class="icon icon-menu">
+          <use xlink:href="#icon-menu" />
+        </svg>
+        <symbol id="icon-menu" viewBox="0 0 32 32">
+          <path d="M2 6h28v6h-28zM2 14h28v6h-28zM2 22h28v6h-28z"></path>
+        </symbol>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item active">
+            <router-link class="nav-link" to="/">
+              Home
+              <span class="sr-only">(current)</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/top-rated">Top Rated</router-link>
+          </li>
+          <li class="nav-item dropdown">
+            <router-link class="nav-link" to="/now-playing">Now Playing</router-link>
+          </li>
+          <li class="nav-item dropdown">
+            <router-link class="nav-link" to="/upcoming">Upcoming</router-link>
+          </li>
+          <li class="nav-item dropdown">
+            <router-link v-if="isLogin" class="nav-link" to="/watchlist">Watchlist</router-link>
+          </li>
+        </ul>
+        <div class="login my-2 my-lg-0">
+          <button
+            class="btn btn-light my-2 my-sm-0 text-dark font-weight-bold"
+            type="button"
+            @click="loginHandler"
+          >{{isLogin ? 'Logout': 'Login'}}</button>
+        </div>
       </div>
     </nav>
   </div>
@@ -46,18 +76,29 @@ export default {
 };
 </script>
 <style scoped>
-.navbar {
+.navigation {
   background-color: rgb(11, 4, 44);
 }
 .nav-link {
   color: white;
 }
-.nav-link:hover {
+.nav-link:hover,
+.icon:hover,
+.logo:hover {
   opacity: 0.8;
 }
 .logo {
   cursor: pointer;
-  font-size: 3em;
+  font-size: 2.5em;
   line-height: 1;
+}
+.icon {
+  display: inline-block;
+  width: 1.3em;
+  height: 1.3em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  color: rgb(11, 4, 44);
 }
 </style>
