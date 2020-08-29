@@ -1,5 +1,5 @@
 <template>
-  <div class="cast-card card mr-4 mb-4">
+  <div class="cast-card card mx-4 mb-4">
     <img
       :src="`${API.IMAGE_URL}${actor.profile_path}`"
       class="card-img-top"
@@ -32,9 +32,17 @@ export default {
 
 <style scoped>
 .cast-card {
-  width: 12.3rem;
+  width: 10rem;
   border-radius: 8px;
   border: none;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
 }
+@media (max-width: 575.98px) {
+  .cast-card{
+    width: 7rem;
+  }
+ .cast-card, .card-title {
+   font-size: 0.6rem;
+ }
+ }
 </style>

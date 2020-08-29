@@ -31,4 +31,5 @@ export default {
 #app img {
   width: 100%;
 }
+
 </style>

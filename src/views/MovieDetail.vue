@@ -56,9 +56,9 @@
         </div>
       </div>
     </div>
-    <div class="container cast mt-5">
-      <h2>Cast</h2>
-      <div class="d-flex flex-wrap mt-3">
+    <div class="cast container mt-5">
+      <h2 class="cast-title text-center">Cast</h2>
+      <div class="cast-list d-flex flex-wrap mt-3 justify-content-center">
         <CastProfileCard v-for="actor in cast" :key="actor.id" :actor="actor" />
       </div>
     </div>
@@ -131,4 +131,10 @@ export default {
   stroke: currentColor;
   fill: currentColor;
 }
+
+@media (max-width: 575.98px) {
+  .cast-list {
+    justify-content: center;
+  }
+ }
 </style>
