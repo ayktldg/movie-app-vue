@@ -1,9 +1,9 @@
 <template>
   <div class="top-rated">
     <div class="container my-4">
-      <h2 class>Top Rated</h2>
+      <h2 class="title">Top Rated</h2>
     </div>
-    <div class="container d-flex flex-wrap">
+    <div class="movie-list container d-flex flex-wrap">
       <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
   </div>
@@ -25,3 +25,15 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+@media (max-width: 575.98px) {
+  .movie-list {
+    justify-content: center;
+  }
+  .title {
+    text-align: center;
+  }
+}
+</style>
+

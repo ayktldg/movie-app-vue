@@ -1,5 +1,5 @@
 <template>
-  <nav class="footer navbar navbar-expand-lg justify-content-around">
+  <nav class="footer navbar navbar-expand-lg justify-content-around py-4">
     <div>
       <small class="nav-link">
         Powered by

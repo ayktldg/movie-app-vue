@@ -6,8 +6,8 @@
         <div class="rank-container">
           <span class="rank">{{movie.vote_average}}</span>
         </div>
-        <h6>{{movie.title}}</h6>
-        <small>{{movie.release_date}}</small>
+        <h6 class="card-title">{{movie.title}}</h6>
+        <small class="card-average">{{movie.release_date}}</small>
       </div>
     </router-link>
     <button
@@ -76,4 +76,14 @@ export default {
   background-color: rgb(13, 3, 61);
   border-radius: 8px;
 }
+@media (max-width: 575.98px) {
+  .movie-card {
+    width: 7rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+  .card-average, .card-title,{
+    font-size: 0.6rem;
+  }
+ }
 </style>
