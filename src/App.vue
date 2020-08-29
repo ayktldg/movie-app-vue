@@ -2,7 +2,9 @@
   <div id="app">
     <TheNavbar />
     <div class="body mx-auto">
+        <transition name="page" mode="out-in">
         <router-view />
+      </transition>
     </div>
     <TheFooter />
   </div>
@@ -30,6 +32,15 @@ export default {
 }
 #app img {
   width: 100%;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+  transform: translate(50px);
+}
+.page-enter-active,
+.page-leave {
+  transition: all 0.5s;
 }
 
 </style>
