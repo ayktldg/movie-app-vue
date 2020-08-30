@@ -1,9 +1,9 @@
 <template>
   <div>
     <nav class="navigation navbar navbar-expand-lg py-4">
-      <router-link class="logo navbar-brand font-weight-bold text-white" to="/">TMDB</router-link>
+      <router-link class="logo navbar-brand font-weight-bold text-white  ml-3" to="/">TMDB</router-link>
       <button
-        class="navbar-toggler btn-sm bg-light"
+        class="navbar-toggler btn-sm bg-light mr-4"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -40,7 +40,7 @@
             <router-link v-if="isLogin" class="nav-link" to="/watchlist">Watchlist</router-link>
           </li>
         </ul>
-        <div class="login my-2 my-lg-0">
+        <div class="login my-2 my-lg-0 mr-4">
           <button
             class="btn btn-light my-2 my-sm-0 text-dark font-weight-bold"
             type="button"
