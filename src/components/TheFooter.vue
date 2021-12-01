@@ -9,11 +9,9 @@
     <div class="owner">
       <small class="nav-link">
         &copy; 2020 Made by
-        <a
-          class="text-danger"
-          href="https://github.com/ayktldg"
-          target="_blank"
-        >ayktldg</a>
+        <a class="text-danger" href="https://github.com/ayktldg" target="_blank"
+          >ayktldg</a
+        >
       </small>
     </div>
     <div class="icons d-flex">
@@ -58,13 +56,19 @@
                 d="M12 12h5.535v2.837h0.079c0.77-1.381 2.655-2.837 5.464-2.837 5.842 0 6.922 3.637 6.922 8.367v9.633h-5.769v-8.54c0-2.037-0.042-4.657-3.001-4.657-3.005 0-3.463 2.218-3.463 4.509v8.688h-5.767v-18z"
               ></path>
               <path d="M2 12h6v18h-6v-18z"></path>
-              <path d="M8 7c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path>
+              <path
+                d="M8 7c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"
+              ></path>
             </symbol>
           </defs>
         </a>
       </div>
       <div class="instagram ml-2">
-        <a class="nav-link" href="https://www.instagram.com/ayktldg/" target="_blank">
+        <a
+          class="nav-link"
+          href="https://www.instagram.com/ayktldg/"
+          target="_blank"
+        >
           <svg class="icon icon-instagram">
             <use xlink:href="#icon-instagram" />
           </svg>
@@ -93,7 +97,6 @@ export default {};
 
 <style scoped>
 .footer {
-  /*height: 72px;  */
   background-color: rgb(11, 4, 44);
   color: white;
 }

@@ -1,7 +1,11 @@
 <template>
   <div>
     <nav class="navigation navbar navbar-expand-lg py-4">
-      <router-link class="logo navbar-brand font-weight-bold text-white  ml-3" to="/">TMDB</router-link>
+      <router-link
+        class="logo navbar-brand font-weight-bold text-white  ml-3"
+        to="/"
+        >TMDB</router-link
+      >
       <button
         class="navbar-toggler btn-sm bg-light mr-4"
         type="button"
@@ -28,16 +32,22 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/top-rated">Top Rated</router-link>
+            <router-link class="nav-link" to="/top-rated"
+              >Top Rated</router-link
+            >
           </li>
           <li class="nav-item dropdown">
-            <router-link class="nav-link" to="/now-playing">Now Playing</router-link>
+            <router-link class="nav-link" to="/now-playing"
+              >Now Playing</router-link
+            >
           </li>
           <li class="nav-item dropdown">
             <router-link class="nav-link" to="/upcoming">Upcoming</router-link>
           </li>
           <li class="nav-item dropdown">
-            <router-link v-if="isLogin" class="nav-link" to="/watchlist">Watchlist</router-link>
+            <router-link v-if="isLogin" class="nav-link" to="/watchlist"
+              >Watchlist</router-link
+            >
           </li>
         </ul>
         <div class="login my-2 my-lg-0 mr-4">
@@ -45,7 +55,9 @@
             class="btn btn-light my-2 my-sm-0 text-dark font-weight-bold"
             type="button"
             @click="loginHandler"
-          >{{isLogin ? 'Logout': 'Login'}}</button>
+          >
+            {{ isLogin ? "Logout" : "Login" }}
+          </button>
         </div>
       </div>
     </nav>
@@ -58,7 +70,7 @@ export default {
   name: "TheNavbar",
   data() {
     return {
-      status: "Login"
+      status: "Login",
     };
   },
   methods: {
@@ -68,11 +80,11 @@ export default {
       } else {
         this.$router.push("/login");
       }
-    }
+    },
   },
   computed: {
-    ...mapGetters({ isLogin: "users/isLogin" })
-  }
+    ...mapGetters({ isLogin: "users/isLogin" }),
+  },
 };
 </script>
 <style scoped>
