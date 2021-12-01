@@ -30,26 +30,25 @@ export default {
   props: {
     movie: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      API
+      API,
     };
   },
   methods: {
     closeTrailer() {
       this.$store.dispatch("movies/CHANGE_TRAILER_STATUS", false);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
 .trailer {
   position: absolute;
-  width: 90%;
-  top: 2%;
+  top: 20%;
   left: 4%;
   background-color: black;
   border-radius: 8px;
@@ -69,6 +68,8 @@ export default {
 @media (max-width: 575.98px) {
   .trailer {
     top: 50%;
+    left: 0;
+    width: 100%;
   }
 }
 </style>
