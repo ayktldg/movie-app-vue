@@ -1,6 +1,6 @@
 <template>
   <div class="watchlist">
-    <div class="container my-4">
+    <div class="container pt-5">
       <h2 class="title">My Watchlist</h2>
     </div>
     <div v-show="favorites.length == 0" class="container my-5">
@@ -20,19 +20,25 @@ import { mapGetters } from "vuex";
 export default {
   name: "WatchList",
   components: {
-    MovieCard
+    MovieCard,
   },
   computed: {
-    ...mapGetters({ favorites: "users/favorites" })
-  }
+    ...mapGetters({ favorites: "users/favorites" }),
+  },
 };
 </script>
 <style scoped>
+.watchlist {
+  height: calc(100vh - 11.65rem);
+}
 .message {
   font-size: 5em;
   font-weight: bold;
 }
 @media (max-width: 575.98px) {
+  .watchlist {
+    height: auto;
+  }
   .movie-list {
     justify-content: center;
   }
